@@ -9,10 +9,10 @@ if [ "$PATCHWORK_VERSION" = "" ]; then
     PATCHWORK_VERSION="DEV"
 fi
 
-if [ -d "$DIR/release" ]; then
-    rm -rf $DIR/release/*
+if [ -d "$DIR/dist" ]; then
+    rm -rf $DIR/dist/*
 else
-    mkdir -p $DIR/release
+    mkdir -p $DIR/dist
 fi
 
 
@@ -20,7 +20,7 @@ for v in "${OSARCHS[@]}"
 do
     suffix=`echo "${v}" | tr / _`
     p="patchwork-toolkit-${PATCHWORK_VERSION}_${suffix}"
-    d="${DIR}/release/${p}"
+    d="${DIR}/dist/${p}"
     mkdir -p $d
 
     # Compile
@@ -73,8 +73,8 @@ do
     # Copy docs
     cp -R ${DIR}/docs $d/
 
-    cd $DIR && /usr/bin/zip -9 -r "${p}.zip" "$p"
-    cd $DIR &&  /usr/bin/tar -zcvf "${p}.tar.gz" $p
+    cd $DIR/dist && /usr/bin/zip -9 -r "${p}.zip" "$p"
+    cd $DIR/dist && /usr/bin/tar -zcvf "${p}.tar.gz" $p
     rm -rf $d
 done
 
