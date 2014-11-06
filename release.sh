@@ -70,11 +70,12 @@ do
     cp -R ${DIR}/static/dashboard/plugins/thirdparty/justgage.1.0.1.js $d/static/dashboard/plugins/thirdparty/
     cp -R ${DIR}/static/dashboard/plugins/thirdparty/raphael.2.1.0.min.js $d/static/dashboard/plugins/thirdparty/
 
-    #cp -R ${DIR}/docs $d/
+    # Copy docs
+    cp -R ${DIR}/docs $d/
 
-    #cd $DIR && /usr/bin/zip -9 -r "${p}.zip" "$p"
-    #cd $DIR &&  /usr/bin/tar -zcvf "${p}.tar.gz" $p
-    #rm -rf $d
+    cd $DIR && /usr/bin/zip -9 -r "${p}.zip" "$p"
+    cd $DIR &&  /usr/bin/tar -zcvf "${p}.tar.gz" $p
+    rm -rf $d
 done
 
 echo "DONE!"
