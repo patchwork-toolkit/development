@@ -72,9 +72,6 @@ do
 
     #cp -R ${DIR}/docs $d/
 
-    #mv $DIR/release/device-* $d/
-    #mv $DIR/release/service-* $d/
-
     #cd $DIR && /usr/bin/zip -9 -r "${p}.zip" "$p"
     #cd $DIR &&  /usr/bin/tar -zcvf "${p}.tar.gz" $p
     #rm -rf $d

@@ -163,5 +163,8 @@ echo -n " -> executing build.sh... "
 ./build.sh
 echo_pass
 
+echo "Generating HTML docs from wiki"
+./doc.sh
+
 echo "DONE!"
 exit 0

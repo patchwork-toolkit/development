@@ -3,19 +3,32 @@ Patchwork Development Environment Layout
 
 Scripts &amp; configuration required for setting up a Patchwork development environment.
 
+## Setup
 
+```
+$ ./setup.sh
+This script configures current directory as Patchwork Toolkit development environment.
+Proceed? [y/n] y
+...
+DONE!
+```
 
-??!?!?!?!?
-fetch & go get/install all dependencies for the dev env
-fetch agent exampples
-fetch wiki, website
-fetch dashboard
-create directory layout
+## Run
 
-support various Go workspaces
-- global GOPATH=HOME
-- local - ask for location
-- default suggest location inside of the dev env
+```
+$ foreman start
+03:16:26 mqtt.1 | started with pid 95603
+03:16:26 sc.1   | started with pid 95604
+03:16:26 dc.1   | started with pid 95605
+03:16:26 sr.1   | started with pid 95606
+03:16:26 dgw.1  | started with pid 95608
+...
+```
 
-Include this into dist/build:
-grip --gfm --context=patchwork-toolkit/patchwork Home.md (.md -> .html)
+## Release
+
+```
+$ release.sh v0.2.1
+...
+DONE!
+```
