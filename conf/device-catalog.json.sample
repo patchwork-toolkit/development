@@ -1,0 +1,18 @@
+{
+  "description": "Standalone Device Catalog",
+  "dnssdEnabled": true,
+  "publicAddr": "localhost",
+  "bindAddr": "0.0.0.0",
+  "bindPort": 8081,
+  "apiLocation": "/dc",
+  "staticDir": "./static",
+  "storage": {
+    "type": "memory"
+  },
+  "serviceCatalog": [
+    {
+      "discover": true,
+      "ttl": 30
+    }
+  ]
+}

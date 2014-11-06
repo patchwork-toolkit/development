@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "allow_edit": true,
+  "plugins": [],
+  "panes": [
+    {
+      "width": 1,
+      "row": {
+        "3": 1
+      },
+      "col": {
+        "3": 1
+      },
+      "col_width": 3,
+      "widgets": [
+        {
+          "type": "text_widget",
+          "settings": {
+            "title": "ABOUT",
+            "size": "regular",
+            "value": "datasources[\"DC\"][\"description\"]",
+            "animate": false
+          }
+        }
+      ]
+    }
+  ],
+  "datasources": [
+    {
+      "name": "Clock",
+      "type": "clock",
+      "settings": {
+        "refresh": 1
+      }
+    },
+    {
+      "name": "DC",
+      "type": "JSON",
+      "settings": {
+        "url": "/dc",
+        "use_thingproxy": false,
+        "refresh": 30,
+        "method": "GET"
+      }
+    }
+  ],
+  "columns": 3
+}

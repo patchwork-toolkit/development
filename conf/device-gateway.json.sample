@@ -1,0 +1,25 @@
+{
+  "id": "my-demo-gateway-1",
+  "description": "Gateway in my office",
+  "dnssdEnabled": true,
+  "publicAddr": "localhost",
+  "staticDir": "./static",
+  "catalog": [
+    {
+      "discover": true
+    }
+  ],
+  "http": {
+    "bindAddr": "0.0.0.0",
+    "bindPort": 8080
+  },
+  "protocols": {
+    "REST": {
+      "location": "/rest"
+    },
+    "MQTT": {
+      "serverUri": "tcp://127.0.0.1:1883",
+      "prefix": "/my-demo-gateway-1"
+    }
+  }
+}
