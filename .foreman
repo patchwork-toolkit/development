@@ -1,2 +1,1 @@
-concurrency: alpha=0,bravo=1
 port: 15000

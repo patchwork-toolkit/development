@@ -1,1 +1,8 @@
-*.json
+conf/*.json
+conf/services/*.json
+conf/devices/*.json
+agent-examples/
+release/
+static/dashboard/
+website/
+wiki/

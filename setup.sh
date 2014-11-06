@@ -52,6 +52,9 @@ function echo_if {
 # Main
 #
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd $DIR
+
 echo "This script configures current directory as Patchwork Toolkit development environment."
 echo -n "Proceed? [y/n] "
 while read answer
@@ -81,49 +84,84 @@ echo "Checking required software"
 echo " -> Checking git... $(echo_if $(program_is_installed git))"
 echo " -> Checking mosquitto... $(echo_if $(program_is_installed mosquitto))"
 echo " -> Checking foreman... $(echo_if $(program_is_installed foreman))"
+echo " -> Checking grunt... $(echo_if $(program_is_installed grunt))"
 
 
-echo "Cloning related repositories"
+echo "Cloning/updating related repositories"
 echo -n " -> agent-examples repository... "
-git clone https://github.com/patchwork-toolkit/agent-examples
+if [ -d "$PWD/agent-examples" ]; then
+    pushd $PWD/agent-examples >> /dev/null
+    git pull >> /dev/null
+    popd >> /dev/null
+else
+    git clone https://github.com/patchwork-toolkit/agent-examples >> /dev/null
+fi
 echo_pass
 
 echo -n " -> dashboard repository... "
-pushd $PWD/static >> /dev/null
-git clone https://github.com/patchwork-toolkit/dashboard.git
-popd >> /dev/null
+if [ -d "$PWD/static/dashboard" ]; then
+    pushd $PWD/static/dashboard >> /dev/null
+    git pull >> /dev/null
+    popd >> /dev/null
+else
+    pushd $PWD/static >> /dev/null
+    git clone https://github.com/patchwork-toolkit/dashboard.git >> /dev/null
+    popd >> /dev/null
+fi
 echo_pass
 
-echo -n " -> wiki repository.. ."
-git clone https://github.com/patchwork-toolkit/patchwork.wiki.git wiki
+echo -n " -> wiki repository..."
+if [ -d "$PWD/wiki" ]; then
+    pushd $PWD/wiki >> /dev/null
+    git pull >> /dev/null
+    popd >> /dev/null
+else
+    git clone https://github.com/patchwork-toolkit/patchwork.wiki.git wiki >> /dev/null
+fi
 echo_pass
 
 echo -n " -> website repository... "
-git clone https://github.com/patchwork-toolkit/patchwork-toolkit.github.io.git website
+if [ -d "$PWD/website" ]; then
+    pushd $PWD/website >> /dev/null
+    git pull >> /dev/null
+    popd >> /dev/null
+else
+    git clone https://github.com/patchwork-toolkit/patchwork-toolkit.github.io.git website >> /dev/null
+fi
 echo_pass
 
 
 echo "Creating configuration from samples"
 
-echo -n " -> conf/*.json.. ."
+echo -n " -> conf/*.json... "
 cp $PWD/conf/dashboard.json.sample $PWD/conf/dashboard.json
 cp $PWD/conf/device-catalog.json.sample $PWD/conf/device-catalog.json
 cp $PWD/conf/device-gateway.json.sample $PWD/conf/device-gateway.json
 cp $PWD/conf/service-catalog.json.sample $PWD/conf/service-catalog.json
 echo_pass
 
-echo -n " -> conf/devices/*.json.. ."
+echo -n " -> conf/devices/*.json... "
 cp $PWD/conf/devices/dummy.json.sample $PWD/conf/devices/dummy.json
 cp $PWD/conf/devices/speakers.json.sample $PWD/conf/devices/speakers.json
 cp $PWD/conf/devices/system.json.sample $PWD/conf/devices/system.json
 echo_pass
 
-echo -n " -> conf/services/*.json.. ."
+echo -n " -> conf/services/*.json... "
 cp $PWD/conf/services/mqtt-broker.json.sample $PWD/conf/services/mqtt-broker.json
 echo_pass
 
+
+echo "Building dashboard"
+pushd $PWD/static/dashboard >> /dev/null
+npm install .
+grunt
+popd >> /dev/null
+
+
 echo "Building programs"
-build.sh
+echo -n " -> executing build.sh... "
+./build.sh
 echo_pass
 
 echo "DONE!"
+exit 0
