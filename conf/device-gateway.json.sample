@@ -1,6 +1,6 @@
 {
   "id": "my-demo-gateway-1",
-  "description": "Gateway in my office",
+  "description": "Demo Device Gateway",
   "dnssdEnabled": true,
   "publicAddr": "localhost",
   "staticDir": "./static",
@@ -18,7 +18,7 @@
       "location": "/rest"
     },
     "MQTT": {
-      "serverUri": "tcp://127.0.0.1:1883",
+      "url": "tcp://127.0.0.1:1883",
       "prefix": "/my-demo-gateway-1"
     }
   }
