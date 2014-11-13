@@ -85,6 +85,7 @@ echo " -> Checking git... $(echo_if $(program_is_installed git))"
 echo " -> Checking mosquitto... $(echo_if $(program_is_installed mosquitto))"
 echo " -> Checking foreman... $(echo_if $(program_is_installed foreman))"
 echo " -> Checking grunt... $(echo_if $(program_is_installed grunt))"
+echo " -> Checking grip... $(echo_if $(program_is_installed grip))"
 
 
 echo "Cloning/updating related repositories"
